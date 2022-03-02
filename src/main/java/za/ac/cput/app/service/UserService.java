@@ -6,6 +6,7 @@ import za.ac.cput.app.entity.UserEntity;
 import za.ac.cput.app.model.UserModel;
 import za.ac.cput.app.repository.UserRepository;
 
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 /**
@@ -25,10 +26,9 @@ public class UserService {
 
   public void register(UserModel userModel) {
 
-    if(checkEmailExist(userModel.getEmail())) {
+    if (checkEmailExist(userModel.getEmail())) {
       throw new RuntimeException("Email already exists");
-    }
-    else {
+    } else {
       UserEntity userEntity = new UserEntity();
       userEntity.setEmail(userModel.getEmail());
       userEntity.setUsername(userModel.getUsername());
@@ -40,7 +40,6 @@ public class UserService {
   }
 
   private boolean checkEmailExist(String email) {
-
     Optional<UserEntity> optional = repository.findByEmail(email);
     return optional.isPresent() ? true : false;
   }
