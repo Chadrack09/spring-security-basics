@@ -3,9 +3,7 @@ package za.ac.cput.app.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.validation.constraints.Email;
+import lombok.ToString;
 
 /**
  * @author Chadrack B. Boudzoumou
@@ -17,12 +15,14 @@ import javax.validation.constraints.Email;
  * <p>Project spring-security-basics</p>
  */
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserModel {
 
-  private String username;
-  private String password;
-  private String matchPassword;
-  private String email;
+    private String username;
+    private String password;
+    private String matchPassword;
+    private String email;
+    private String roles;
 }

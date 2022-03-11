@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="form-container">
-            <h1 class="font-weight-light">Registration</h1>
-            <form th:action="@{/register}" method="POST" th:object="${userModel}">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="usernameId"
-                           th:field="${userModel.username}" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" id="emailId"
-                            th:field="${userModel.email}" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control"
-                           th:field="${userModel.password}" id="passwordId" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control"
-                           id="cpasswordId" placeholder="Confirm Password">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-            </form>
-        </div>
+<div class="wrapper">
+    <div class="form-container">
+        <h1 class="font-weight-light">Registration</h1>
+        <form method="POST" th:action="@{/register}" th:object="${userModel}">
+            <div class="form-group">
+                <input class="form-control" id="usernameId" placeholder="Username"
+                       th:field="${userModel.username}" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="emailId" placeholder="Email"
+                       th:field="${userModel.email}" type="email">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="passwordId"
+                       placeholder="Password" th:field="${userModel.password}" type="password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="cpasswordId"
+                       placeholder="Confirm Password" type="password">
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Submit</button>
+        </form>
     </div>
+</div>
 </body>
 </html>

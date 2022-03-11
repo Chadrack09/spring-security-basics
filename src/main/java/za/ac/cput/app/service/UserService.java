@@ -1,12 +1,12 @@
 package za.ac.cput.app.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import za.ac.cput.app.entity.UserEntity;
+import za.ac.cput.app.model.User;
 import za.ac.cput.app.model.UserModel;
 import za.ac.cput.app.repository.UserRepository;
 
-import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 /**
@@ -22,25 +22,26 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService {
 
-  private UserRepository repository;
+    private UserRepository repository;
+    private PasswordEncoder encoder;
 
-  public void register(UserModel userModel) {
+    public void register(UserModel userModel) {
 
-    if (checkEmailExist(userModel.getEmail())) {
-      throw new RuntimeException("Email already exists");
-    } else {
-      UserEntity userEntity = new UserEntity();
-      userEntity.setEmail(userModel.getEmail());
-      userEntity.setUsername(userModel.getUsername());
-      userEntity.setPassword(userModel.getPassword());
-      userEntity.setROLE("USER");
-
-      UserEntity save = repository.save(userEntity);
+//    if (checkEmailExist(userModel.getEmail())) {
+//      throw new RuntimeException("Email already exists");
+//    } else {
+//      User user = new User();
+//      user.setEmail(userModel.getEmail());
+//      user.setUsername(userModel.getUsername());
+//      user.setPassword(encoder.encode(userModel.getPassword()));
+//      user.setRoles(userModel.getRoles());
+//
+//      User save = repository.save(user);
+//    }
     }
-  }
 
-  private boolean checkEmailExist(String email) {
-    Optional<UserEntity> optional = repository.findByEmail(email);
-    return optional.isPresent() ? true : false;
-  }
+    private boolean checkEmailExist(String email) {
+        Optional<User> optional = repository.findByEmail(email);
+        return optional.isPresent() ? true : false;
+    }
 }

@@ -22,17 +22,27 @@ import za.ac.cput.app.service.UserService;
 @AllArgsConstructor
 public class UserController {
 
-  private UserService service;
+    private UserService service;
 
-  @GetMapping("/registration")
-  public String registration(Model model) {
-    model.addAttribute("userModel", new UserModel());
-    return "registration";
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        model.addAttribute("userModel", new UserModel());
+        return "registration";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin";
+    }
+
+  @GetMapping("/login")
+  public String loginPage() {
+    return "login";
   }
 
-  @PostMapping("/register")
-  public String register(@ModelAttribute(name = "userModel") UserModel userModel) {
-    service.register(userModel);
-    return "index";
-  }
+    @PostMapping("/register")
+    public String register(@ModelAttribute(name = "userModel") UserModel userModel) {
+        service.register(userModel);
+        return "index";
+    }
 }
