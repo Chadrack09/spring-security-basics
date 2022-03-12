@@ -35,13 +35,10 @@ public class User {
 
     private String role;
 
-    private boolean active;
-
     public User(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
-        this.active = true;
     }
 }

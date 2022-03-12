@@ -16,16 +16,6 @@ import static za.ac.cput.app.model.UserPermission.*;
  * <p>Project spring-security-basics</p>
  */
 public enum UserRole {
-    USER(Sets.newHashSet(USER_READ, USER_WRITE)),
-    ADMIN(Sets.newHashSet(ADMIN_READ, ADMIN_WRITE));
-
-    private final Set<UserPermission> permissions;
-
-    UserRole(Set<UserPermission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public Set<UserPermission> getPermissions() {
-        return permissions;
-    }
+    USER,
+    ADMIN;
 }

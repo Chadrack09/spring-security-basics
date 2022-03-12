@@ -24,33 +24,10 @@ class UserRepositoryTest {
     @Autowired
     private UserService service;
 
-//  @Test
-//  public void saveUser() {
-//    UserEntity u = UserEntity.builder()
-//            .email("test@test.com")
-//            .username("Chain")
-//            .password("Merc")
-//            .ROLE("USER")
-//            .build();
-//
-//    repository.save(u);
-//  }
-
-    @Test
-    public void selectByName() {
-        User u = repository.getUserByName("Chain");
-        System.out.println("User = " + u);
-    }
-
     @Test
     public void selectUsername() {
         System.out.println("Username: " +
                 repository.selectUsername("test@test.com"));
-    }
-
-    @Test
-    public void updateUsername() {
-        repository.updateUsername("Albert", 1l);
     }
 
     @Test
@@ -59,12 +36,8 @@ class UserRepositoryTest {
                 "carl@carl.com", 1l);
     }
 
-//  @Test
-//  public void register() {
-//    service.register(new UserModel(
-//            "Rock",
-//            "rock@123",
-//            "rock@123",
-//            "rock@rock.com"));
-//  }
+    @Test
+    public void findByUsername() {
+        System.out.println(repository.findByUsername("John"));
+    }
 }

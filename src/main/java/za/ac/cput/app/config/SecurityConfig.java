@@ -2,15 +2,15 @@ package za.ac.cput.app.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import za.ac.cput.app.model.UserRole;
 
 import static za.ac.cput.app.model.UserRole.ADMIN;
 import static za.ac.cput.app.model.UserRole.USER;
@@ -28,22 +28,24 @@ import static za.ac.cput.app.model.UserRole.USER;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder encodePassword() {
-        return new BCryptPasswordEncoder();
-    }
+    private UserDetailsService userDetailsService;
+
+    /*@Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(encoder());
+
+        return provider;
+    }*/
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth)
+            throws Exception {
         auth
-                .inMemoryAuthentication()
-                .withUser("marc")
-                .password("$2a$05$2FifpdopObzkeSE1.NJM..qEaSnYAaOfB758lloERZ8plpnGvazKG")
-                .roles(USER.name())
-                .and()
-                .withUser("admin")
-                .password("$2a$05$tlTgdetB.rN7RE1KRXklMOtIbxBjv46z3e96amDX9E5S4s0VKHAO.")
-                .roles(ADMIN.name());
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(encoder())
+        ;
     }
 
     @Override
@@ -51,15 +53,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").authenticated()
-                .antMatchers("/registration").hasRole(USER.name())
-                .antMatchers("/admin").hasRole(ADMIN.name())
+                .antMatchers("/").permitAll()
+                .antMatchers("/registration").hasAuthority(USER.name())
+                .antMatchers("/admin").hasAuthority(ADMIN.name())
                 .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/login")/*
                         .defaultSuccessUrl("/", true)
+                        .usernameParameter("username")
+                        .passwordParameter("password")*/
                     .and()
                     .rememberMe() // The default is set up to 2 weeks
+                        .rememberMeParameter("remember-me")
                     .and()
                     .logout()
                         .logoutUrl("/logout")
@@ -70,5 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
-
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

@@ -21,16 +21,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT u FROM User u WHERE u.username = ?1")
-    User getUserByName(String username);
-
     @Query("SELECT u.username FROM User u WHERE u.email = ?1")
     String selectUsername(String email);
-
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE User SET username = ?1 WHERE id = ?2", nativeQuery = true)
-    void updateUsername(String username, Long id);
 
     @Transactional
     @Modifying(clearAutomatically = true)
