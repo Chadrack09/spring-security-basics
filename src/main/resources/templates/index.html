@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
-<center>
-    <div class="display-4">Home Page</div>
-    <p>Home Page - New comers</p>
-    <p><a th:href="@{/registration}">Registration</a></p>
-    <p><a th:href="@{/admin}">Admin Page</a></p>
-    <for>
-        <a th:href="@{/logout}" class="btn btn-primary">Logout</a>
-    </for>
-</center>
+    <div class="container w-50 border wrapper">
+        <div class="display-4">Home Page</div>
+        <p>Home page is permitted to any users of types ?</p>
+        <div>
+            <h3 class="font-weight-light">Credentials</h3>
+            <div>
+                <h5 class="font-weight-light">Admin</h5>
+                <p style="margin: 0">Username:  Sarah</p>
+                <p style="margin: 0">Password:  sarah@123</p>
+            </div>
+            <div style="margin-top:1rem; margin-bottom: 1.5rem ">
+                <h5 class="font-weight-light">User</h5>
+                <p style="margin: 0">Username:  John</p>
+                <p style="margin: 0">Password:  john@123</p>
+            </div>
+
+        </div>
+        <p>
+            <a class="btn btn-primary text-white" th:href="@{/user}">User page</a>
+            <a class="btn btn-primary text-white" th:href="@{/admin}">Admin page</a>
+        </p>
+    </div>
 </body>
 </html>

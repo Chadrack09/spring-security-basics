@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.app.model.User;
 
-import java.util.Optional;
-
 /**
  * @author Chadrack B. Boudzoumou
  * @email 219383847@mycput.ac.za
@@ -29,8 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "UPDATE User SET username = ?1, " +
             "password = ?2, email = ?3 WHERE id = ?4")
     void updateUser(String username, String password, String email, Long id);
-
-    Optional<User> findByEmail(String email);
 
     User findByUsername(String username);
 

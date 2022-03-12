@@ -9,8 +9,6 @@ import za.ac.cput.app.model.User;
 import za.ac.cput.app.model._UserDetails;
 import za.ac.cput.app.repository.UserRepository;
 
-import java.util.Optional;
-
 /**
  * @author Chadrack B. Boudzoumou
  * @email 219383847@mycput.ac.za

@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>User</title>
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container w-50 border wrapper">
-    <div class="display-4">Admin Page</div>
-    <p>Only authenticated admin has access to this page</p>
-    <p>See admin credentials in <a>home page</a></p>
+    <div class="display-4">User Page</div>
+    <p>Only authenticated users has access to this page</p>
+    <p>See user credentials in <a>home page</a></p>
     <p>
         <a class="btn btn-primary text-white" th:href="@{/}">Home page</a>
         <a class="btn btn-primary text-white" th:href="@{/logout}">Logout</a>

@@ -2,7 +2,7 @@ package za.ac.cput.app.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import za.ac.cput.app.model.User;
 import za.ac.cput.app.repository.UserRepository;
@@ -25,7 +25,7 @@ import static za.ac.cput.app.model.UserRole.USER;
 @AllArgsConstructor
 public class DBInitializer implements CommandLineRunner {
 
-    private BCryptPasswordEncoder encoder;
+    private PasswordEncoder encoder;
     private UserRepository repository;
 
     @Override
@@ -38,9 +38,9 @@ public class DBInitializer implements CommandLineRunner {
                     USER.name()
             ),
             new User(
-                    "Mac",
-                    encoder.encode("mac@123"),
-                    "mac@doe.org",
+                    "Sarah",
+                    encoder.encode("sarah@123"),
+                    "sarah@doe.org",
                     ADMIN.name()
             )
     ));

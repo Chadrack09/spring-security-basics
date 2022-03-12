@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import za.ac.cput.app.model.UserModel;
 import za.ac.cput.app.service.UserService;
 
 /**
@@ -24,25 +21,13 @@ public class UserController {
 
     private UserService service;
 
-    @GetMapping("/registration")
+    @GetMapping("/user")
     public String registration(Model model) {
-        model.addAttribute("userModel", new UserModel());
-        return "registration";
+        return "user";
     }
 
     @GetMapping("/admin")
     public String adminPage() {
         return "admin";
-    }
-
-  @GetMapping("/login")
-  public String loginPage() {
-    return "login";
-  }
-
-    @PostMapping("/register")
-    public String register(@ModelAttribute(name = "userModel") UserModel userModel) {
-        service.register(userModel);
-        return "index";
     }
 }

@@ -1,11 +1,5 @@
 package za.ac.cput.app.model;
 
-import com.google.common.collect.Sets;
-
-import java.util.Set;
-
-import static za.ac.cput.app.model.UserPermission.*;
-
 /**
  * @author Chadrack B. Boudzoumou
  * @email 219383847@mycput.ac.za

@@ -2,8 +2,6 @@ package za.ac.cput.app.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,6 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }*/
 
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -54,14 +58,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/registration").hasAuthority(USER.name())
+                .antMatchers("/user").hasAuthority(USER.name())
                 .antMatchers("/admin").hasAuthority(ADMIN.name())
                 .and()
                 .formLogin()
-                    .loginPage("/login")/*
-                        .defaultSuccessUrl("/", true)
-                        .usernameParameter("username")
-                        .passwordParameter("password")*/
                     .and()
                     .rememberMe() // The default is set up to 2 weeks
                         .rememberMeParameter("remember-me")
@@ -71,12 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID", "remember-me")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/")
         ;
-    }
-
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
     }
 }

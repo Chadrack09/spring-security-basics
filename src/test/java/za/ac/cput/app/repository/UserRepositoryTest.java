@@ -3,8 +3,6 @@ package za.ac.cput.app.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.app.model.User;
-import za.ac.cput.app.service.UserService;
 
 /**
  * @author Chadrack B. Boudzoumou
@@ -20,9 +18,6 @@ class UserRepositoryTest {
 
     @Autowired
     private UserRepository repository;
-
-    @Autowired
-    private UserService service;
 
     @Test
     public void selectUsername() {

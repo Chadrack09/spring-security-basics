@@ -1,10 +1,4 @@
 .wrapper {
-    height: 100vh;
-}
-
-.form-container {
-    width: 400px;
-    margin: auto;
-    position: relative;
-    top: 25%;
+    padding: 2rem;
+    margin-top: 10%;
 }
